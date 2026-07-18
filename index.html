@@ -972,7 +972,9 @@ footer{
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-img" id="heroBg"></div>
+  <div class="hero-img" id="heroBg">
+    <img src="images/hero-bg.png" class="hero-slide active" alt="Sukha Surf Banner">
+  </div>
   <button class="hero-arrow prev" id="heroPrev" aria-label="Previous slide">❮</button>
   <button class="hero-arrow next" id="heroNext" aria-label="Next slide">❯</button>
   <div class="hero-shade"></div>
@@ -1007,7 +1009,7 @@ footer{
     <div class="about-img-col">
       <div class="blob-deco blob1"></div>
       <div class="blob-deco blob2"></div>
-      <img id="rubanImg" class="ruban-photo" alt="Ruban with students at Mahabalipuram beach">
+      <img id="rubanImg" class="ruban-photo" src="images/ruban.png" alt="Ruban with students at Mahabalipuram beach">
       <div class="surf-tag">🤙 Since age 10</div>
     </div>
     <div>
@@ -1478,6 +1480,13 @@ function initHero(resources) {
     img.src = src;
     img.alt = 'Sukha Surf Banner';
     img.className = `hero-slide${idx === 0 ? ' active' : ''}`;
+    
+    // Check if the slide is the graphic logo artwork to prevent it from cropping on mobile
+    if (src.includes('IMG_0007') || src.toLowerCase().includes('logo')) {
+      img.style.objectFit = 'contain';
+      img.style.backgroundColor = '#FAF8F5'; // Blends seamlessly with the logo's cream background
+    }
+    
     container.appendChild(img);
   });
 
